@@ -1,68 +1,143 @@
-# Laravel Authentication & Admin Panel
+# Laravel Authentication & Role-Based User Management
 
-A complete Laravel 13 project covering authentication, role-based authorization, admin panel development, profile management, CRUD operations, search, pagination, file uploads, and RESTful APIs.
+A Laravel-based authentication and user management system with **role-based access control, admin dashboard, profile management, and RESTful User API**.
 
 ## Features
 
-* User Registration & Login
-* Authentication (Login / Logout)
-* Role-Based Access Control (Admin & Customer)
-* Custom Role Middleware
-* Protected Routes
-* Admin Dashboard
-* Customer Dashboard
-* Profile Management
-* Change Password
-* Blade Layouts & Reusable Components
-* Admin User Management (CRUD)
-* Search Functionality
-* Pagination
-* File Upload & Storage
-* Profile Image Upload
-* REST API Development (CRUD)
+### 🔐 Authentication
 
-## Technologies Used
+* User registration
+* User login
+* User logout
+* Session-based authentication
+* Authentication validation
+* Password hashing
+* Automatic dashboard redirection based on user role
 
-* Laravel 13
-* PHP 8.5
+Customers are redirected to the normal dashboard, while administrators are redirected to the Admin Dashboard after login.
+
+### 👥 Role-Based Authorization
+
+The system supports two user roles:
+
+* **Admin**
+* **Customer**
+
+Admins have access to the Admin Dashboard and User Management section, while customers have access to the normal user dashboard.
+
+### 👨‍💼 Admin User Management
+
+Admins can:
+
+* View users
+* Search users by name or email
+* Create users
+* Edit users
+* Change user roles
+* Update passwords
+* Delete users
+* Paginate users
+
+User management includes search and pagination functionality.
+
+### 👤 Profile Management
+
+Authenticated users can:
+
+* View their profile
+* Update their name
+* Upload a profile image
+* Upload documents
+* Change their password
+* Logout
+
+Profile images and uploaded files are stored using Laravel's public storage disk.
+
+### 🌐 RESTful User API
+
+The project also includes a User API with CRUD operations:
+
+| Method    | Endpoint          | Description    |
+| --------- | ----------------- | -------------- |
+| GET       | `/api/users`      | Get all users  |
+| GET       | `/api/users/{id}` | Get user by ID |
+| POST      | `/api/users`      | Create user    |
+| PUT/PATCH | `/api/users/{id}` | Update user    |
+| DELETE    | `/api/users/{id}` | Delete user    |
+
+The API returns JSON responses and validates user input before creating or updating records.
+
+## Validation
+
+Form inputs are validated using Laravel's built-in request validation, including name, email, password, role, image, and file validation.
+
+## Security
+
+* Passwords are hashed using Laravel's `Hash` facade / `bcrypt`
+* Login uses Laravel's authentication system
+* Sessions are regenerated after successful login
+* Sessions are invalidated during logout
+* Password change requires the current password
+* Users cannot delete their own admin account
+
+## Technologies
+
+* PHP
+* Laravel
+* Laravel Eloquent ORM
 * MySQL
-* Blade Template Engine
+* Blade Templates
 * Tailwind CSS
-* Eloquent ORM
-* Laravel Validation
-* Laravel Storage
-* REST APIs
+* REST API
+* JSON
 
-## REST API Endpoints
+## Laravel Concepts Practiced
 
-| Method | Endpoint          | Description     |
-| ------ | ----------------- | --------------- |
-| GET    | `/api/users`      | Get all users   |
-| GET    | `/api/users/{id}` | Get single user |
-| POST   | `/api/users`      | Create user     |
-| PUT    | `/api/users/{id}` | Update user     |
-| DELETE | `/api/users/{id}` | Delete user     |
-
-## Concepts Covered
-
-* Authentication & Authorization
-* Middleware
-* Route Protection
-* Blade Layouts
+* Authentication
+* Authorization
+* Role-Based Access Control
 * CRUD Operations
+* RESTful APIs
 * Eloquent ORM
-* Form Validation
+* Request Validation
+* Route Model Binding
+* Sessions
+* Password Hashing
+* File Uploads
+* Laravel Storage
 * Search
 * Pagination
-* File Uploads
-* Password Hashing
-* API Routes
-* Controllers
-* JSON Responses
-* HTTP Methods (GET, POST, PUT, DELETE)
-* HTTP Status Codes
-* Postman API Testing (GET)
+* Blade Templates
+* Middleware
 
-## Learning Outcome
+## Project Structure
 
-By completing this project, I gained hands-on experience in building secure Laravel applications with authentication, role-based authorization, admin panel development, file handling, CRUD operations, search, pagination, and RESTful API development following Laravel best practices.
+```text
+app/
+├── Http/
+│   └── Controllers/
+│       ├── Admin/
+│       │   └── UserController.php
+│       ├── Api/
+│       │   └── UserController.php
+│       └── AuthController.php
+│
+├── Models/
+│   └── User.php
+│
+resources/
+└── views/
+    ├── admin/
+    │   ├── index.blade.php
+    │   └── users/
+    ├── auth/
+    │   ├── login.blade.php
+    │   └── register.blade.php
+    ├── profile/
+    ├── dashboard.blade.php
+    └── layouts/
+```
+
+## Purpose
+
+This project was developed to practice **Laravel authentication, role-based authorization, admin user management, RESTful APIs, CRUD operations, validation, sessions, password hashing, and file handling** in a complete web application.
